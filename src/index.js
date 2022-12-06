@@ -17,31 +17,6 @@ let amount = 40;
 const getUrl = search =>
   `https://pixabay.com/api/?key=${theKey}&q=${search}&type=photo&orientation=horizontal&safesearch=${safeSearch}&per_page=${amount}&page=${page}`;
 
-// const handelSubmit = event => {
-//   event.preventDefault();
-//   const querry = input.value;
-
-//   console.log({ querry, getUrl });
-
-// //   axios
-// //     .get(getUrl)
-// //     .then(function (response) {
-// //       // handle success
-// //       console.log(response);
-// //     })
-// //     .catch(function (error) {
-// //       // handle error
-// //       console.log(error);
-// //     });
-// };
-
-// const handleSubmit = event => {
-//   event.preventDefault();
-//   const text = event;
-//   console.log(typeof text);
-//   console.log(text);
-//   fetchPicture(text);
-// };
 const createImageLoader = () => {
   return (
     (page += 1),
@@ -50,31 +25,7 @@ const createImageLoader = () => {
     (loader.style.visibility = 'visible')
   );
 
-  // imgName = input.value;
-  // const parsedName = imgName.trim();
-  // if (parsedName.length === 0) return;
-  // const url = getUrl(parsedName, page);
-  // return axios
-  //   .get(url)
-  //   .then(response => {
-  //     console.log(parsedName);
-  //     console.log(`Loaded images from page ${page - 1}`);
-  //     console.log(response.data.hits);
-  //     page++;
-  //     return renderImages(response.data.hits);
-  //   })
-  //   .than(() => page+1)
-  //   .than(() => console.log(`Loaded images from page ${page - 1}`))
-
-  //   .catch(error => {
-  //     console.log(error);
-  //   });
-
-  // let page = 1;
-  // return () =>
-  // getJSON(`https://picsum.photos/v2/list?page=${page++}&limit=21`)
-  //   .then(renderImages)
-  //   .then(() => console.log(`Loaded images from page ${page - 1}`));
+  
 };
 
 // const loadImages = createImageLoader();
@@ -157,10 +108,3 @@ form.addEventListener('submit', e => {
   fetchPicture(input.value);
 });
 observer.observe(loader);
-// input.addEventListener('submit', event => handleSubmit(event.target.value));
-// input.addEventListener('submit', handleSubmit, e => console.log(e));
-// form.addEventListener('submit', e => {
-//   e.preventDefault();
-//   const data = new FormData(e.target);
-//   console.log([...data.entries()]);
-// });
