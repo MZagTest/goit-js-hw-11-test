@@ -34,7 +34,7 @@ const fetchPicture = async name => {
   const parsedName = name.trim();
   if (parsedName.length === 0) return;
   const url = getUrl(parsedName);
-  const table = await axios.get(url);
+  const table = await axios(url);
   const photos = await table.data;
   console.log('table', table);
   testSomething(photos);
