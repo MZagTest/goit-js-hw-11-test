@@ -30,31 +30,30 @@ const createImageLoader = () => {
 
 // const loadImages = createImageLoader();
 
-const fetchPicture = name => {
+const fetchPicture = async name => {
   const parsedName = name.trim();
   if (parsedName.length === 0) return;
   const url = getUrl(parsedName);
-  return axios.get(url)
-    .then(response => {
-      // console.log(parsedName);
-
-      console.log(response);
-      if (response.data.hits.length === 0) {
-        throw Notiflix.Notify.info(
-          'Sorry, there are no images matching your search query. Please try again.'
-        );
-      }
-      const totalHits = response.data.totalHits;
-      return (
-        renderImages(response.data.hits),
-        // console.log(totalHits),
-        Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`)
-      );
-    })
-    .catch(error => {
-      console.log(error);
-    });
+  const table = await axios.get(url);
+  const photos = await table.data;
+  console.log('table', table);
+  testSomething(photos);
 };
+
+const testSomething = response => {
+  if (response.hits.length === 0) {
+    throw Notiflix.Notify.info(
+      'Sorry, there are no images matching your search query. Please try again.'
+    );
+  }
+  const totalHits = response.totalHits;
+  return (
+    renderImages(response.hits),
+    // console.log(totalHits),
+    Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`)
+  );
+};
+
 const lightbox = new SimpleLightbox(`.gallery a`, {
   disableRightClick: true,
   captionsData: "alt",
